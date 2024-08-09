@@ -20,3 +20,5 @@ curl -X POST "http://localhost:8089/api/ocr" \
      -F "join_str= " \
      -F "pad_ratio=0.3"
 ```
+
+or visit `http://localhost:8089/html/index.html`

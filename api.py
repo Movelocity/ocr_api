@@ -10,8 +10,11 @@ print(f"open http://localhost:{port}")
 from fastapi import FastAPI
 from fastapi import FastAPI, Form, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from io import BytesIO
 app = FastAPI()
+# Mount a static folder
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],  # 测试期间允许所有来源访问，部署时需注意替换成盖亚系统的 url
@@ -23,6 +26,8 @@ app.add_middleware(
 @app.get("/")
 def read_main():
     return {"message": "This is your main app"}
+
+app.mount("/html", StaticFiles(directory="html"), name="static")
 
 @app.post("/api/ocr")
 async def invoke_ocr(
